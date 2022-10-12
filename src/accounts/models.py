@@ -6,8 +6,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 DEPARTMAN = [
+    ('Arge','Arge'),
     ('Muhasebe','Muhasebe'),
     ('Satın Alma','Satın Alma'),
+    ('Üretim','Üretim'),
+    ('Planlama','Planlama'),
 ]
 
 class CustomUser(AbstractUser):
