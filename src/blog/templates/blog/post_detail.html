@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card mt-3 border-0">
+    <img src="{% get_media_prefix %}{{ post.image }}" class="card-img-top" alt="{{ post.title }}">
+    <div class="card-body">
+        {% if user.is_authenticated and post.author.id == request.user.id %}
+        
+            {% if post.status == 0 or post.status == 2 %}
+                <a href="{% url 'post_publish' pk=post.pk %}" class="float-end btn btn-sm btn-success me-2"><i class="bi bi-file-earmark-check"></i></a>
+            {% else %}
+                <a href="{% url 'post_archive' pk=post.pk %}" class="float-end btn btn-sm btn-danger me-2"><i class="bi bi-file-earmark-excel"></i></a>
+            {% endif %}
+            <a href="{% url 'post_edit' pk=post.pk %}" class="float-end btn btn-sm btn-secondary me-2"><i class="bi bi-pencil"></i></a>
+        {% endif %}
+
+        <h2 class="card-title">{{ post.title|title }}</h2>
+        <small>
+            {{ post.author.username|title }} - {{ post.updated_on|date:"d/m/Y" }}
+            <br>
+            <br>
+            {{ post.task_title }}
+            <br><br>
+            {{ post.project_name }}
+            <br><br>
+            {{ post.deadline |date:"d/m/Y" }}
+            <br><br>
+            {{ post.task_description }}
+
+        </small>
+        <p class="card-text">{{ post.content|safe|linebreaksbr }}</p>
+    </div>
+    
+    <div class="card-body pt-0">
+        <hr>
+        <div class="row">
+   
+       
+    </div>
+</div>
+
+{% endblock %}

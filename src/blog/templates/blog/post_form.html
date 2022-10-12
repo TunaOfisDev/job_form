@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="card mt-4 rounded">
+    <div class="card-body">
+        <h4>
+            {% if post.id %}Edit{% else %}Yeni {% endif %} İş Formu
+        </h4>
+        <hr>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ post.title }}
+
+            
+            <p class="text-end">
+                <a href="{% url 'post_list' %}" class="btn btn-secondary">İptal</a>
+               
+                <button type="submit" class="btn btn-primary">Kayıt</button>
+            </p>
+            <div id="previewSection" style="display: none;">
+                <hr>
+                
+                <img id="previewImage" class="img-fluid"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
